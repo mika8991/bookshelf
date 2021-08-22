@@ -1,0 +1,64 @@
+<div style="text-align:center">
+    <h1>
+        {{title}}
+    </h1>
+</div>
+<div style="text-align: center">
+    <h2>{{authorTitle}}</h2>
+</div>
+<div style="text-align: center">
+    <table style="text-align: center; margin: auto">
+        <tr style="text-align: center; margin: auto">
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">ФИО</th>
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Дата рождения</th>
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Страна</th>
+        </tr>
+        <tr *ngFor="let author of authors">
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{author.fio}}
+            </td>
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{author.dateOfBirth}}
+            </td>
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{author.country}}
+            </td>
+            <td style="text-align: center; margin: auto">
+                <button (click)="onAuthorDelete(author)">Удалить</button>
+            </td>
+            <td style="text-align: center; margin: auto">
+                <button (click)="onTransitionBooks(author)">Перейти к книгам</button>
+            </td>
+        </tr>
+    </table>
+    <div style="margin-left: auto">
+        <h2>Добавить автора</h2>
+        <form style="margin: auto" [formGroup]="addAuthorForm" (ngSubmit)="onSubmit()">
+            <table style="text-align: center; margin: auto">
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <label for="fio">ФИО:</label>
+                </td>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <input type="text" formControlName="fio" placeholder="" name="fio"
+                           id="fio">
+                </td>
+                <br/>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <label for="dateOfBirth">Дата рождения:</label>
+                </td>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <input type="text" formControlName="dateOfBirth" placeholder="dd-MM-yyyy" name="dateOfBirth"
+                           id="dateOfBirth">
+                </td>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <label for="country">Страна:</label>
+                </td>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <input type="text" formControlName="country" placeholder="" name="country"
+                           id="country">
+                </td>
+                <button style="text-align: center; padding: 3px; margin: auto" class="btn btn-success">Добавить</button>
+            </table>
+        </form>
+    </div>
+</div>

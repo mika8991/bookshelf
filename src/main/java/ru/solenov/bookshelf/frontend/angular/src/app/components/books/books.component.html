@@ -1,0 +1,68 @@
+<div style="text-align:center">
+    <h1>
+        {{title}}
+    </h1>
+</div>
+<div style="text-align: center">
+    <h2>{{bookTitle}} автора {{author?.fio}}:</h2>
+</div>
+<div style="text-align: center">
+    <table style="text-align: center; margin: auto">
+        <tr style="text-align: center; margin: auto">
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">ISBN</th>
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Дата издания</th>
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Название</th>
+        </tr>
+        <tr *ngFor="let book of books">
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{book.isbn}}
+            </td>
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{book.date}}
+            </td>
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{book.title}}
+            </td>
+            <td style="text-align: center; margin: auto">
+                <button (click)="onBookDelete(book)">Удалить</button>
+            </td>
+        </tr>
+    </table>
+    <div style="margin-left: auto">
+        <h2>Добавить книгу</h2>
+        <form style="margin: auto" [formGroup]="addBookForm" (ngSubmit)="onSubmitBook()">
+            <table style="text-align: center; margin: auto">
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <label for="isbn">ISBN:</label>
+                </td>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <input type="text" formControlName="isbn" placeholder="" name="isbn" id="isbn">
+                </td>
+
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <label for="date">Дата написания книги:</label>
+                </td>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <input type="text" formControlName="date" placeholder="dd-MM-yyyy" name="dateOfBirth"
+                           id="date">
+                </td>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <label for="title">Название:</label>
+                </td>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <input type="text" formControlName="title" placeholder="" name="title"
+                           id="title">
+                </td>
+                <br/><br/>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <button class="btn btn-success">Добавить</button>
+                    <button style="margin-left: 10px" (click)="onBackClick()" class="btn btn-success">Назад</button>
+                </td>
+            </table>
+        </form>
+        <br/>
+        <div>
+
+        </div>
+    </div>
+</div>
