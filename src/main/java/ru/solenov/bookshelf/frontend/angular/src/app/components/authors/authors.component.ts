@@ -45,6 +45,10 @@ export class AuthorsComponent implements OnInit {
         this.router.navigate(['books', author.id]);
     }
 
+    onTransitionAllBooks() {
+        this.router.navigate(['books']);
+    }
+
     ngOnInit(): void {
         this.getAllAuthors();
     }

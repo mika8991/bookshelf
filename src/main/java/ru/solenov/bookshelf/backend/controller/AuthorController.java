@@ -3,7 +3,8 @@ package ru.solenov.bookshelf.backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.solenov.bookshelf.backend.model.Author;
+import ru.solenov.bookshelf.backend.dto.AuthorDto;
+import ru.solenov.bookshelf.backend.entity.Author;
 import ru.solenov.bookshelf.backend.repository.AuthorRepository;
 
 import java.util.List;
@@ -17,15 +18,16 @@ public class AuthorController {
     private AuthorRepository repository;
 
     @GetMapping("/authors")
-    private List<Author> getAllAuthors() {
-        return repository.findAll();
+    private List<AuthorDto> getAllAuthors() {
+        AuthorDto authorDto = new AuthorDto();
+        return authorDto.getAllAuthors(repository.findAll());
     }
 
     @GetMapping("/authors/{id}")
-    private ResponseEntity<Author> getAuthorById(@PathVariable Long id) {
-        Optional<Author> author = repository.findById(id);
-        return author.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    private AuthorDto getAuthorById(@PathVariable Long id) {
+        AuthorDto authorDto = new AuthorDto();
+        authorDto.getAuthor(repository.findById(id));
+        return authorDto;
     }
 
     @PostMapping("/authors")
@@ -49,7 +51,11 @@ public class AuthorController {
 
     @DeleteMapping("/authors/{id}")
     private void deleteAuthor(@PathVariable Long id) {
-        Optional<Author> author = repository.findById(id);
-        author.ifPresent(repository::delete);
+        Optional<Author> authorOptional = repository.findById(id);
+        if (authorOptional.isPresent()) {
+            Author author = authorOptional.get();
+            repository.deleteById(author.getId());
+        }
+        /*author.ifPresent(repository::delete);*/
     }
 }

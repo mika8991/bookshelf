@@ -1,8 +1,9 @@
 package ru.solenov.bookshelf.backend.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.solenov.bookshelf.backend.model.Author;
+import org.springframework.stereotype.Repository;
+import ru.solenov.bookshelf.backend.entity.Author;
 
-@org.springframework.stereotype.Repository
+@Repository
 public interface AuthorRepository extends JpaRepository<Author, Long> {
 }

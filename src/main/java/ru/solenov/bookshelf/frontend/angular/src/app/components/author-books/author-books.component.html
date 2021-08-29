@@ -1,0 +1,32 @@
+<div style="text-align:center">
+    <h1>
+        {{title}}
+    </h1>
+</div>
+<div style="text-align: center">
+    <h2>{{booksTitle}}</h2>
+</div>
+<div style="text-align: center">
+    <table style="text-align: center; margin: auto">
+        <tr style="text-align: center; margin: auto">
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">ФИО</th>
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Дата рождения</th>
+            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Страна</th>
+        </tr>
+        <tr *ngFor="let book of books">
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{book.isbn}}
+            </td>
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{book.date}}
+            </td>
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                {{book.title}}
+            </td>
+            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
+                <button (click)="onTransitionAuthors(book)">Перейти к списку авторов книги</button>
+            </td>
+            <button style="margin-left: 10px" (click)="onBackClick()" class="btn btn-success">Назад</button>
+        </tr>
+    </table>
+</div>

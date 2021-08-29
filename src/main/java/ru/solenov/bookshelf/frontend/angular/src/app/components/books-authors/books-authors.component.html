@@ -4,7 +4,7 @@
     </h1>
 </div>
 <div style="text-align: center">
-    <h2>{{authorTitle}}</h2>
+    <h2>{{authorTitle}} книги {{book?.title}}: </h2>
 </div>
 <div style="text-align: center">
     <table style="text-align: center; margin: auto">
@@ -12,28 +12,16 @@
             <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">ФИО</th>
             <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Дата рождения</th>
             <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Страна</th>
-            <th style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">Книги автора</th>
         </tr>
         <tr *ngFor="let author of authors">
             <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
-                {{author.fio}}
+                {{author?.fio}}
             </td>
             <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
-                {{author.dateOfBirth}}
+                {{author?.dateOfBirth}}
             </td>
             <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
-                {{author.country}}
-            </td>
-            <td style="text-align: center; border: 1px solid black; padding: 3px; margin: auto">
-                <li *ngFor="let book of author.books">
-                    {{book.title}}
-                </li>
-            </td>
-            <td style="text-align: center; margin: auto">
-                <button (click)="onTransitionBooks(author)">Перейти к списку книг</button>
-            </td>
-            <td style="text-align: center; margin: auto">
-                <button (click)="onAuthorDelete(author)">Удалить</button>
+                {{author?.country}}
             </td>
         </tr>
     </table>
@@ -63,10 +51,12 @@
                     <input type="text" formControlName="country" placeholder="" name="country"
                            id="country">
                 </td>
-                <button style="text-align: center; padding: 3px; margin: auto" class="btn btn-success">Добавить</button>
-                <button style="text-align: center; padding: 3px; margin-left: 10px" class="btn btn-success"
-                        (click)="onTransitionAllBooks()">Перейти к списку всех книг
-                </button>
+                <td style="text-align: center; padding: 3px; margin: auto">
+                    <button style="text-align: center; padding: 3px; margin: auto" class="btn btn-success">Добавить
+                    </button>
+                    <button style="margin-left: 10px" (click)="onBackClick()" class="btn btn-success">На главную
+                    </button>
+                </td>
             </table>
         </form>
     </div>

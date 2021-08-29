@@ -1,4 +1,4 @@
-package ru.solenov.bookshelf.backend.model;
+package ru.solenov.bookshelf.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -7,6 +7,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -35,7 +37,11 @@ public class Author implements Serializable {
         this.dateOfBirth = dateOfBirth;
         this.country = country;
     }
+    public void addBook(Book book) {
+        books = new ArrayList<>();
+        this.books.add(book);
+    }
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Book> books;
+    @ManyToMany(mappedBy = "authors", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Book> books;
 }

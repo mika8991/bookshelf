@@ -26,11 +26,6 @@ export class BooksComponent implements OnInit {
         title: ['', Validators.required]
     });
 
-    onBookDelete(book: Book) {
-        this.bookService.deleteBook(this.authorId, book.id)
-            .subscribe(value => this.getBooksByAuthorId());
-    }
-
     onSubmitBook() {
         this.bookService.addBook(this.authorId, this.addBookForm?.value)
             .subscribe(value => this.getBooksByAuthorId());
